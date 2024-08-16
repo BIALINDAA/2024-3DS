@@ -1,108 +1,112 @@
 const caixaPrincipal = document.querySelector('.caixa-principal');
 const caixaPerguntas = document.querySelector('.caixa-perguntas');
 const caixaAlternativas = document.querySelector('.caixa-alternativas');
-const caixaResultado = document.querySelector('.caixa-resultados');
+const caixaResultado = document.querySelector('.caixa-resultado');
 const textoResultado = document.querySelector('.texto-resultado');
 
 const perguntas = [
     {
-        enunciado: "texto01",
+        enunciado: "Quem inventou o voleibol?",
         alternativas: [
             {
-                texto:"alternativa01",
-                afirmacao: "afirmacao01"
+                texto: "William G. Morgan",
+                afirmacao: "William G. Morgan é creditado como o inventor do voleibol em 1895."
             },
             {
-                texto:"alternativa02",
-                afirmacao:"afirmacao02"
+                texto: "James Naismith",
+                afirmacao: "James Naismith inventou o basquete, não o voleibol."
+            }   
+        ]
+    },
+    {
+        enunciado: "Qual era o nome original do voleibol?",
+        alternativas: [
+            {
+                texto: "Mintonette",
+                afirmacao: "O nome original do voleibol era Mintonette."
+            },
+            {
+                texto: "Volley Ball",
+                afirmacao: "O nome Volley Ball foi adotado mais tarde, mas não era o nome original."
             }
         ]
     },
     {
-        enunciado: "texto02",
+        enunciado: "Quando o voleibol foi incluído nos Jogos Olímpicos?",
         alternativas: [
             {
-                texto:"alternativa03",
-                afirmacao: "afirmacao03"
+                texto: "1964",
+                afirmacao: "O voleibol foi incluído nos Jogos Olímpicos de Tóquio em 1964."
             },
             {
-                texto:"alternativa04",
-                afirmacao:"afirmacao04"
+                texto: "1956",
+                afirmacao: "O voleibol não foi incluído nas Olimpíadas até 1964."
             }
         ]
     },
     {
-        enunciado: "texto03",
+        enunciado: "Qual é o número máximo de jogadores por time em uma partida de voleibol?",
         alternativas: [
             {
-                texto:"alternativa05",
-                afirmacao: "afirmacao06"
+                texto: "6",
+                afirmacao: "Cada time no voleibol tem um máximo de 6 jogadores em campo durante uma partida."
             },
             {
-                texto:"alternativa02",
-                afirmacao:"afirmacao06"
+                texto: "7",
+                afirmacao: "Um time de voleibol tem apenas 6 jogadores, não 7."
             }
         ]
     },
     {
-        enunciado: "texto04",
+        enunciado: "Qual país tem mais títulos olímpicos no voleibol masculino?",
         alternativas: [
             {
-                texto:"alternativa07",
-                afirmacao: "afirmacao07"
+                texto: "Brasil",
+                afirmacao: "O Brasil é o país com mais títulos olímpicos no voleibol masculino."
             },
             {
-                texto:"alternativa08",
-                afirmacao:"afirmacao08"
+                texto: "Estados Unidos",
+                afirmacao: "Os Estados Unidos têm menos títulos olímpicos no voleibol masculino em comparação com o Brasil."
             }
         ]
     },
-    {
-        enunciado: "texto05",
-        alternativas: [
-            {
-                texto:"alternativa09",
-                afirmacao: "afirmacao09"
-            },
-            {
-                texto:"alternativa10",
-                afirmacao:"afirmacao10"
-            }
-        ]
-    }
 ]
 
 let atual = 0;
 let perguntaAtual;
+let historiaFinal = "";
 
-function mostraPergunta() {
+function mostrarPerguntas(){
     if(atual >= perguntas.length){
         mostraResultado();
-        return;
+        return
     }
     perguntaAtual = perguntas[atual];
-    caixaPerguntas.textContent = perguntaAtual.enunciado
-    mostraAlternativas();
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent = ""
+    mostrarAlternativas();
 }
 
-function mostraAlternativas(){
-    for( const alternativa of perguntaAtual.alternativas){
-        const botaoAlternativas = document.createElement('button')
+function mostrarAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas){
+        const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa.texto;
-        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
-        caixaAlternativas.appendChild(botaoAlternativas)
+        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa))
+        caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
 
-function respostaSelecionada(opcaoSelecionada) {
+function respostaSelecionada(opcaoSelecionada){
     const afirmacoes = opcaoSelecionada.afirmacao;
     historiaFinal += afirmacoes + " ";
-            atual++;
-            mostraPergunta();
+    atual++;
+    mostrarPerguntas();
 }
-        
-function mostraResultado (){
-    caixaPerguntas.textContent = "Em 2049...";
+
+function mostraResultado(){
+    caixaPerguntas.textContent = "Obrigado por participar do quiz sobre a história do voleibol!";
     textoResultado.textContent = historiaFinal;
-    caixaAlternativas.textContent = " ";
+    caixaAlternativas.textContent = "";
 }
+
+mostrarPerguntas();

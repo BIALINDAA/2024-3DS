@@ -1,23 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
-    font-weight: 440;
+    box-sizing: border-box;
+    font-weight: 0;
 }
 
-:root{
-    --celereiro-vermelho: #780000ff;
-    --tijolo-de-fogo: #c1121fff;
-    --chicote-de-mamao: #fdf0d5ff;
-    --azul-da-prussia: #003049ff;
-    --superioridade-aerea-azul: #669bbcff;
-    --fonte-titulo:  "Platypi", serif;
+:root {
+    --vermelho-claro-1: #fcd6d9; /* Muito claro */
+    --vermelho-claro-2: #df9ea5; /* Claro */
+    --vermelho-claro-3: #4e2428; /* Levemente mais escuro */
+    --vermelho-claro-4: #9a5352; /* Mais saturado, mas ainda claro */
+    --vermelho-claro-5: #410a08; /* Vermelho claro mais intenso */
+
+    --azul-claro: rgb(255, 255, 255);
+    --superioridade-aerea-azul: rgb(53, 14, 56);
+    --fonte-titulo: "Platypi", serif;
     --fonte-texto: "Josefin Sans", sans-serif;
 }
 
-body{
-    background-color: var(--celereiro-vermelho);
+body {
+    background-color: var(--vermelho-claro-1);
     color: var(--superioridade-aerea-azul);
     display: flex;
     justify-content: center;
@@ -26,15 +30,36 @@ body{
     font-family: var(--fonte-texto);
 }
 
-.caixa-principal{
-    background-color: var(--tijolo-de-fogo);
-    width: 90%;
+.caixa-principal {
+    background-color: var(--vermelho-claro-2);
+    width: 100%;
     max-width: 600px;
     text-align: center;
     padding: 20px;
+    border-radius: 20px; /* Bordas arredondadas para a caixa principal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
 }
 
-.titulo{
-    color: var(--chicote-de-mamao);
+.titulo {
+    color: var(--vermelho-claro-5);
     font-family: var(--fonte-titulo);
+    font-size: 28px; /* Tamanho da fonte do título */
+    margin-bottom: 20px; /* Espaçamento abaixo do título */
+}
+
+button {
+    background-color: var(--vermelho-claro-4);
+    color: var(--azul-claro);
+    border: none;
+    border-radius: 25px; /* Bordas mais arredondadas para botões */
+    padding: 15px 30px; /* Aumenta o padding para melhor aparência dos botões */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Suaviza transições */
+    margin: 10px auto;
+    font-size: 18px; /* Tamanho da fonte dos botões */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+button:hover {
+    background-color: var(--vermelho-claro-5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aumenta a sombra ao passar o mouse */
 }
